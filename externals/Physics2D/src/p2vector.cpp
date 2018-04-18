@@ -72,22 +72,22 @@ float p2Vec2::Dot(p2Vec2 v1, p2Vec2 v2)
 
 float p2Vec2::GetMagnitude()
 {
-	return 0.0f;
+	return sqrt(pow(this->x, 2) + pow(this->y, 2));
 }
 
 p2Vec2 p2Vec2::Normalized()
 {
-	return p2Vec2();
+	return p2Vec2(this->x * GetMagnitude(), this->y * GetMagnitude());
 }
 
 void p2Vec2::Normalize()
 {
-	sqrt(pow(this->x, 2) + pow(this->y, 2));
+	*this = *this / this->GetMagnitude();
 }
 
 p2Vec3 p2Vec2::to3()
 {
-	return p2Vec3();
+	return p2Vec3(this->x, this->y, 0.0f);
 }
 
 p2Vec3::p2Vec3()

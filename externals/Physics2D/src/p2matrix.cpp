@@ -66,13 +66,14 @@ p2Mat22 p2Mat22::operator/(float f)
 
 p2Mat22 p2Mat22::Invert()
 {
-	if (GetDeterminant == 0)
+	if (this->GetDeterminant() == 0)
 	{
 		return *this;
 	}
 	else
 	{
-		return p2Mat22(p2Vec2(this->rows[1].y*1.0f / GetDeterminant(), this->rows[0].y*(-1.0f)*(1.0f / GetDeterminant())), p2Vec2((this->rows[1].x*(-1.0f))*(1.0f / GetDeterminant()), this->rows[0].x *(1.0f / GetDeterminant())));
+		return p2Mat22(p2Vec2(this->rows[1].y*1.0f / this->GetDeterminant(), this->rows[0].y*(-1.0f)*(1.0f / this->GetDeterminant())), 
+					   p2Vec2((this->rows[1].x*(-1.0f))*(1.0f / this->GetDeterminant()), this->rows[0].x *(1.0f / this->GetDeterminant())));
 	}
 }
 
@@ -104,16 +105,25 @@ p2Mat33 p2Mat33::operator-(p2Mat33 m1)
 
 p2Mat33 p2Mat33::operator*(p2Mat33 m1)
 {
-	return p2Mat33(p2Vec3(this->rows[0].x*m1.rows[0].x + this->rows[1].x*m1.rows[0].y + this->rows[2].x*m1.rows[0].z, this->rows[0].y*m1.rows[0].x + this->rows[1].y*m1.rows[0].y + this->rows[2].y*m1.rows[0].z, this->rows[0].z*m1.rows[0].x + this->rows[1].z*m1.rows[0].y + this->rows[2].z*m1.rows[0].z),
-		p2Vec3(this->rows[0].x*m1.rows[1].x + this->rows[1].x*m1.rows[1].y + this->rows[2].x*m1.rows[1].z, this->rows[0].y*m1.rows[1].x + this->rows[1].y*m1.rows[1].y + this->rows[2].y*m1.rows[1].z, this->rows[0].z*m1.rows[1].x + this->rows[1].z*m1.rows[1].y + this->rows[2].z*m1.rows[1].z),
-		p2Vec3(this->rows[0].x*m1.rows[2].x + this->rows[1].x*m1.rows[2].y + this->rows[2].x*m1.rows[2].z, this->rows[0].y*m1.rows[2].x + this->rows[1].y*m1.rows[2].y + this->rows[2].y*m1.rows[2].z, this->rows[0].z*m1.rows[2].x + this->rows[1].z*m1.rows[2].y + this->rows[2].z*m1.rows[2].z));
+	return p2Mat33(p2Vec3(
+					this->rows[0].x*m1.rows[0].x + this->rows[1].x*m1.rows[0].y + this->rows[2].x*m1.rows[0].z,
+					this->rows[0].y*m1.rows[0].x + this->rows[1].y*m1.rows[0].y + this->rows[2].y*m1.rows[0].z, 
+					this->rows[0].z*m1.rows[0].x + this->rows[1].z*m1.rows[0].y + this->rows[2].z*m1.rows[0].z),
+				p2Vec3(
+					this->rows[0].x*m1.rows[1].x + this->rows[1].x*m1.rows[1].y + this->rows[2].x*m1.rows[1].z, 
+					this->rows[0].y*m1.rows[1].x + this->rows[1].y*m1.rows[1].y + this->rows[2].y*m1.rows[1].z, 
+					this->rows[0].z*m1.rows[1].x + this->rows[1].z*m1.rows[1].y + this->rows[2].z*m1.rows[1].z),
+				p2Vec3(
+					this->rows[0].x*m1.rows[2].x + this->rows[1].x*m1.rows[2].y + this->rows[2].x*m1.rows[2].z, 
+					this->rows[0].y*m1.rows[2].x + this->rows[1].y*m1.rows[2].y + this->rows[2].y*m1.rows[2].z, 
+					this->rows[0].z*m1.rows[2].x + this->rows[1].z*m1.rows[2].y + this->rows[2].z*m1.rows[2].z));
 }
 
 p2Vec3 p2Mat33::operator*(p2Vec3 v)
 {
 	return p2Vec3(this->rows[0].x*v.x + this->rows[1].x*v.y + this->rows[2].x*v.z,
-		this->rows[0].y*v.x + this->rows[1].y*v.y + this->rows[2].y*v.z,
-		this->rows[0].z*v.x + this->rows[1].z*v.y + this->rows[2].z*v.z);
+				  this->rows[0].y*v.x + this->rows[1].y*v.y + this->rows[2].y*v.z,
+				  this->rows[0].z*v.x + this->rows[1].z*v.y + this->rows[2].z*v.z);
 }
 
 p2Mat33 p2Mat33::operator*(float f)
@@ -128,10 +138,27 @@ p2Mat33 p2Mat33::operator/(float f)
 
 p2Mat33 p2Mat33::Invert()
 {
-	return p2Mat33();
+	return p2Mat33(
+		p2Vec3(
+			this->rows[1].y*this->rows[2].z - (this->rows[2].y*this->rows[1].z),
+			this->rows[2].y*this->rows[0].z - (this->rows[0].y*this->rows[2].z),
+			this->rows[0].y*this->rows[1].z - (this->rows[1].y*this->rows[0].z)),
+		p2Vec3(
+			this->rows[2].x*this->rows[1].z - (this->rows[1].x*this->rows[2].z),
+			this->rows[0].x*this->rows[2].z - (this->rows[2].x*this->rows[0].z),
+			this->rows[1].x*this->rows[0].z - (this->rows[0].x*this->rows[1].z)),
+		p2Vec3(
+			this->rows[1].x*this->rows[2].y - (this->rows[2].x*this->rows[1].y), 
+			this->rows[2].x*this->rows[0].y - (this->rows[0].x*this->rows[2].y), 
+			this->rows[0].x*this->rows[1].y - (this->rows[1].x*this->rows[0].y)));
 }
 
 float p2Mat33::GetDeterminant()
 {
-	return this->rows[0].x*this->rows[1].y*this->rows[2].z + this->rows[1].x*this->rows[2].y*this->rows[0].z + this->rows[2].x*this->rows[0].y*this->rows[1].z - (this->rows[2].x*this->rows[1].y*this->rows[0].z) - (this->rows[0].x*this->rows[2].y*this->rows[1].z) - (this->rows[1].x*this->rows[0].y*this->rows[2].z);
+	return this->rows[0].x*this->rows[1].y*this->rows[2].z + 
+		   this->rows[1].x*this->rows[2].y*this->rows[0].z + 
+		   this->rows[2].x*this->rows[0].y*this->rows[1].z - 
+		  (this->rows[2].x*this->rows[1].y*this->rows[0].z) - 
+		  (this->rows[0].x*this->rows[2].y*this->rows[1].z) - 
+		  (this->rows[1].x*this->rows[0].y*this->rows[2].z);
 }
