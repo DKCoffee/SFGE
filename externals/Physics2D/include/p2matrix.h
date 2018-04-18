@@ -25,12 +25,14 @@ SOFTWARE.
 #ifndef SFGE_P2MATRIX_H
 #define SFGE_P2MATRIX_H
 
-#include <p2vector.h>
+#include "p2vector.h"
+
 
 struct p2Mat22
 {
 	p2Mat22();
-	p2Mat22(p2Vec2 r1, p2Vec2 r2) ;
+
+	p2Mat22(p2Vec2 r1, p2Vec2 r2);
 
 	p2Mat22 operator+(p2Mat22 m1);
 	p2Mat22 operator-(p2Mat22 m1);
@@ -45,6 +47,7 @@ struct p2Mat22
 	float GetDeterminant();
 
 	p2Vec2 rows[2] = {};
+	
 };
 
 struct p2Mat33
