@@ -1,4 +1,9 @@
-#include "..\include\p2collider.h"
+ #include "..\include\p2collider.h"
+
+p2Collider::p2Collider(p2ColliderDef * colliderDef)
+{
+	this->userData = colliderDef->userData;
+}
 
 bool p2Collider::IsSensor()
 {
@@ -7,5 +12,5 @@ bool p2Collider::IsSensor()
 
 void * p2Collider::GetUserData()
 {
-	return nullptr;
+	return userData;
 }

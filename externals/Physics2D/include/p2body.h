@@ -26,6 +26,7 @@ SOFTWARE.
 #define SFGE_P2BODY_H
 
 #include <p2aabb.h>
+#include <p2collider.h>
 
 class p2Collider;
 struct p2ColliderDef;
@@ -55,6 +56,8 @@ struct p2BodyDef
 class p2Body
 {
 public:
+	p2Body(p2BodyDef* bodyDef);
+
 	p2Vec2 GetLinearVelocity();
 	
 	void SetLinearVelocity(p2Vec2 velocity);
@@ -73,6 +76,6 @@ private:
 	p2Vec2 position;
 	p2Vec2 linearVelocity;
 	float angularVelocity;
+	p2Collider* collider;
 };
-
 #endif
