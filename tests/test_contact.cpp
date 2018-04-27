@@ -24,6 +24,7 @@ SOFTWARE.
 
 #include <engine/engine.h>
 #include <engine/scene.h>
+#include <SFML/Graphics.hpp>
 
 int main()
 {
@@ -31,8 +32,15 @@ int main()
 	engine.Init(false, true);
 
 	engine.GetSceneManager()->SetCurrentScene("data/scenes/test_contact.scene");
+	sf::Vector2f speed(1, 1);
+	
+
 
 	engine.Start();
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	{
+		sfge::Scene::GetGameObjects;
+	}
 #if WIN32
 	system("pause");
 #endif

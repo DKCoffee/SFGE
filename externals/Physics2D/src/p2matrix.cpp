@@ -36,7 +36,7 @@ p2Mat22::p2Mat22(p2Vec2 r1, p2Vec2 r2)
 
 p2Mat22 p2Mat22::operator+(p2Mat22 m1)
 {
-	return p2Mat22(this->rows[0] + m1.rows[0], this->rows[1] + m1.rows[0]);
+	return p2Mat22(this->rows[0] + m1.rows[0], this->rows[1] + m1.rows[1]);
 }
 
 p2Mat22 p2Mat22::operator-(p2Mat22 m1)
@@ -46,7 +46,12 @@ p2Mat22 p2Mat22::operator-(p2Mat22 m1)
 
 p2Mat22 p2Mat22::operator*(p2Mat22 m1)
 {
-	return p2Mat22();
+	return p2Mat22(p2Vec2(
+						this->rows[0].x * m1.rows[0].x + this->rows[1].x * m1.rows[0].y, 
+						this->rows[0].y * m1.rows[0].x + this->rows[1].y * m1.rows[0].y),
+				   p2Vec2(
+						this->rows[0].x * m1.rows[1].x + this->rows[1].x * m1.rows[1].y, 
+						this->rows[0].y * m1.rows[1].x + this->rows[1].y * m1.rows[1].y));
 }
 
 p2Vec2 p2Mat22::operator*(p2Vec2 v)

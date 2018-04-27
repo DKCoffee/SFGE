@@ -65,6 +65,9 @@ public:
 	float GetAngularVelocity();
 	
 	p2Vec2 GetPosition();
+
+	p2BodyType GetType();
+
 	/**
 	* \brief Factory method creating a p2Collider
 	* \param colliderDef p2ColliderDef definition of the collider
@@ -76,6 +79,7 @@ private:
 	p2Vec2 position;
 	p2Vec2 linearVelocity;
 	float angularVelocity;
+	p2BodyType type;
 	p2Collider* collider;
 };
 #endif

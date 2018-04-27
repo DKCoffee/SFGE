@@ -57,6 +57,7 @@ public:
 	void* GetUserData();
 private:
 	void* userData;
+	bool isSensor;
 };
 
 
