@@ -84,7 +84,7 @@ p2Mat22 p2Mat22::Invert()
 
 float p2Mat22::GetDeterminant()
 {
-	return this->rows[0].x * this->rows[1].y - this->rows[0].y * this->rows[1].x;;
+	return this->rows[0].x * this->rows[1].y - this->rows[0].y * this->rows[1].x;
 }
 
 p2Mat33::p2Mat33()

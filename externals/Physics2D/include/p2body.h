@@ -66,6 +66,7 @@ public:
 	
 	p2Vec2 GetPosition();
 
+	void SetPosition(p2Vec2 v);
 	p2BodyType GetType();
 
 	/**
@@ -73,7 +74,12 @@ public:
 	* \param colliderDef p2ColliderDef definition of the collider
 	* \return p2Collider collider attached to the p2Body
 	*/
+	
+	//ATTENTION A CHANGER
+
 	p2Collider* CreateCollider(p2ColliderDef* colliderDef);
+
+	bool p2Body::CheckContact(p2Body*b);
 private:
 	p2AABB aabb;
 	p2Vec2 position;

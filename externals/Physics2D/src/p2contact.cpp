@@ -26,7 +26,7 @@ SOFTWARE.
 
 p2Collider * p2Contact::GetColliderA()
 {
-	return nullptr;
+	return ColliderDef;
 }
 
 p2Collider * p2Contact::GetColliderB()

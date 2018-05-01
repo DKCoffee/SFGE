@@ -22,14 +22,35 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 #include <p2world.h>
+#include <iostream>
 
 
 p2World::p2World(p2Vec2 gravity)
 {
+
 }
 
 void p2World::Step(float dt)
 {
+	for (auto body_it = m_bodies.begin(); body_it != m_bodies.end(); body_it++)
+	{
+		body_it->SetPosition((body_it->GetLinearVelocity() * dt));
+
+		for (auto body_it_second = m_bodies.begin(); body_it_second != m_bodies.end(); body_it++)
+		{
+			if (body_it != body_it_second)
+			{
+				//Verifier si ils se touchent
+				if(body_it->CheckContact(&(*body_it_second)));
+				{
+					std::cout << "Sa touche !!!!!!!";
+				}
+			}
+		}
+	}
+
+
+
 }
 
 p2Body * p2World::CreateBody(p2BodyDef* bodyDef)
@@ -42,4 +63,5 @@ p2Body * p2World::CreateBody(p2BodyDef* bodyDef)
 
 void p2World::SetContactListener(p2ContactListener * contactListener)
 {
+
 }

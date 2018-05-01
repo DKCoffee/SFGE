@@ -37,10 +37,10 @@ int main()
 
 
 	engine.Start();
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-	{
-		sfge::Scene::GetGameObjects;
-	}
+	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	//{
+	//	sfge::Scene::GetGameObjects;
+	//}
 #if WIN32
 	system("pause");
 #endif

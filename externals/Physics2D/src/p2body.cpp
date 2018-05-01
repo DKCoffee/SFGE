@@ -49,6 +49,11 @@ p2Vec2 p2Body::GetPosition()
 	return position;
 }
 
+void p2Body::SetPosition(p2Vec2 v)
+{
+	position = position + v;
+}
+
 
 p2BodyType p2Body::GetType()
 {
@@ -57,6 +62,24 @@ p2BodyType p2Body::GetType()
 
 p2Collider * p2Body::CreateCollider(p2ColliderDef * colliderDef)
 {
+	if (p2RectShape* d = static_cast<p2RectShape*>(nullptr))
+	{
+		this->aabb = p2AABB(GetPosition(), d->GetSize());
+	}
+
 	this->collider = new p2Collider(colliderDef);
 	return (this->collider);
+}
+
+bool p2Body::CheckContact(p2Body * body)
+{
+	
+	if ((body->aabb.GetCenter() - this->aabb.GetCenter()).Normalize < (body->aabb.GetExtends() / 2 + this->aabb.GetExtends() / 2).Normalize)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
