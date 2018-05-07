@@ -32,7 +32,7 @@ p2AABB::p2AABB()
 p2AABB::p2AABB(p2Vec2 position, p2Vec2 size)
 {
 	bottomLeft = position - size / 2;
-	topRight = position - size / 2;
+	topRight = position + size / 2;
 }
 
 p2AABB::p2AABB(p2Vec2 position, float radius)
@@ -51,12 +51,8 @@ p2Vec2 p2AABB::GetExtends()
 	return p2Vec2(this->topRight - this->GetCenter());
 }
 
-p2Vec2 p2AABB::GetBottomLeft()
+void p2AABB::SetPosition(p2Vec2 v)
 {
-	return p2Vec2();
-}
-
-p2Vec2 p2AABB::GetTopRight()
-{
-	return p2Vec2();
+	topRight = topRight + v;
+	bottomLeft = bottomLeft + v;
 }

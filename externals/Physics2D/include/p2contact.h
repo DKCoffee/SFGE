@@ -35,6 +35,11 @@ class p2Contact
 public:
 	p2Collider* GetColliderA();
 	p2Collider* GetColliderB();
+	void SetColliderA(p2Collider collider);
+	void SetColliderB(p2Collider collider);
+private:
+	p2Collider ColliderA;
+	p2Collider ColliderB;
 };
 
 /**

@@ -32,7 +32,7 @@ SOFTWARE.
 */
 class p2Shape
 {
-
+	virtual void f();
 };
 
 /**

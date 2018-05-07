@@ -25,28 +25,36 @@ SOFTWARE.
 #include <iostream>
 
 
-p2World::p2World(p2Vec2 gravity)
+p2World::p2World(p2Vec2 gravity) : m_Gravity(gravity)
 {
-
+	
 }
 
 void p2World::Step(float dt)
 {
 	for (auto body_it = m_bodies.begin(); body_it != m_bodies.end(); body_it++)
 	{
-		body_it->SetPosition((body_it->GetLinearVelocity() * dt));
+		if (body_it->GetType() == p2BodyType::DYNAMIC)
+		{
+			body_it->SetPosition((body_it->GetLinearVelocity() * dt + m_Gravity * body_it->GetGravityScale() * dt));
+		}
 
-		for (auto body_it_second = m_bodies.begin(); body_it_second != m_bodies.end(); body_it++)
+		for (auto body_it_second = m_bodies.begin(); body_it_second != m_bodies.end(); body_it_second++)
 		{
 			if (body_it != body_it_second)
 			{
 				//Verifier si ils se touchent
-				if(body_it->CheckContact(&(*body_it_second)));
+				if(body_it->CheckContact(&(*body_it_second)))
 				{
 					std::cout << "Sa touche !!!!!!!";
 				}
+				else
+				{
+					std::cout << "Pas touche !!!!!!";
+				}
 			}
 		}
+		
 	}
 
 

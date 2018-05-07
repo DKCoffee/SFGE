@@ -26,10 +26,20 @@ SOFTWARE.
 
 p2Collider * p2Contact::GetColliderA()
 {
-	return ColliderDef;
+	return &(ColliderA);
 }
 
 p2Collider * p2Contact::GetColliderB()
 {
-	return nullptr;
+	return &(ColliderB);
+}
+
+void p2Contact::SetColliderA(p2Collider collider)
+{
+	ColliderA = collider;
+}
+
+void p2Contact::SetColliderB(p2Collider collider)
+{
+	ColliderB = collider;
 }

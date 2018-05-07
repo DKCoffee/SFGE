@@ -50,9 +50,7 @@ struct p2AABB
 	*/
 	p2Vec2 GetExtends();
 
-	p2Vec2 GetBottomLeft();
-
-	p2Vec2 GetTopRight();
+	void SetPosition(p2Vec2 v);
 
 	
 };

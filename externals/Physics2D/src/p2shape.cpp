@@ -41,5 +41,10 @@ void p2RectShape::SetSize(p2Vec2 size)
 
 p2Vec2 p2RectShape::GetSize()
 {
-	return p2Vec2(m_Size);
+	return m_Size;
+}
+
+void p2Shape::f()
+{
+
 }

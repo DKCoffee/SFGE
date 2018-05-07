@@ -66,7 +66,12 @@ public:
 	
 	p2Vec2 GetPosition();
 
+	p2AABB GetAABB();
+
 	void SetPosition(p2Vec2 v);
+
+	float GetGravityScale();
+
 	p2BodyType GetType();
 
 	/**
@@ -87,5 +92,6 @@ private:
 	float angularVelocity;
 	p2BodyType type;
 	p2Collider* collider;
+	float gravityScale;
 };
 #endif
