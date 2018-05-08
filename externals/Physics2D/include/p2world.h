@@ -51,7 +51,7 @@ public:
 	void SetContactListener(p2ContactListener* contactListener);
 
 	void UniversalGravity(p2Body* a, p2Body* b);
-	bool testPlanets = true;
+	bool testPlanets = false;
 	void SetMass(float MassSun, float MassPlanet);
 
 

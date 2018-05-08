@@ -116,9 +116,6 @@ p2Collider * p2Body::CreateCollider(p2ColliderDef * colliderDef)
 
 bool p2Body::CheckContact(p2Body * body)
 {
-	//std::cout << (body->aabb.GetCenter() - this->aabb.GetCenter()).GetMagnitude() <<" / "<< (body->aabb.GetExtends() / 2 + this->aabb.GetExtends() / 2).GetMagnitude()<<"\n";
-	std::cout << aabb.GetExtends().x << " / " << aabb.GetExtends().y << "\n";
-
 
 	p2Vec2 body1 = this->aabb.GetCenter() - p2Vec2(this->aabb.GetExtends().x, this->aabb.GetExtends().y);
 	p2Vec2 body2 = body->aabb.GetCenter() - p2Vec2(body->aabb.GetExtends().x, body->aabb.GetExtends().y);

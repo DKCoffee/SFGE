@@ -54,11 +54,11 @@ void p2World::Step(float dt)
 				//Verifier si ils se touchent
 				if(body_it->CheckContact(&(*body_it_second)))
 				{
-					std::cout << "Sa touche !!!!!!!";
+					std::cout << "CONTACT\n";
 				}
 				else
 				{
-					std::cout << "Pas touche !!!!!!";
+					std::cout << "NO CONTACT\n";
 				}
 			}
 		}
@@ -87,8 +87,6 @@ void p2World::UniversalGravity(p2Body * a, p2Body * Sun)
 	p2Vec2 VecDirGravity = Sun->GetPosition() - a->GetPosition();
 	VecDirGravity.Normalized();
 	p2Vec2 VecPerpenicular = p2Vec2(VecDirGravity.y, -(VecDirGravity.x));
-	std::cout << VecPerpenicular.x << " / " << VecPerpenicular.y << "\n";
-	std::cout << VecDirGravity.x << " / " << VecDirGravity.y << "\n";
 	VecDirGravity = VecDirGravity * (6.67 * pow(10, -11) * a->GetMass() * Sun->GetMass() / pow(5, 2));
 	a->SetPosition(VecDirGravity + VecPerpenicular / 100);
 
