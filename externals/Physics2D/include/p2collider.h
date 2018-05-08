@@ -55,9 +55,15 @@ public:
 	* \brief Return the userData
 	*/
 	void* GetUserData();
+
+	p2Collider GetCollider();
+
+	p2Shape GetShape();
+
 private:
 	void* userData;
 	bool isSensor;
+	p2Shape* shape;
 };
 
 

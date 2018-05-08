@@ -50,6 +50,10 @@ public:
 	*/
 	void SetContactListener(p2ContactListener* contactListener);
 
+	void UniversalGravity(p2Body* a, p2Body* b);
+	bool testPlanets = true;
+	void SetMass(float MassSun, float MassPlanet);
+
 
 private:
 	std::list<p2Body> m_bodies;

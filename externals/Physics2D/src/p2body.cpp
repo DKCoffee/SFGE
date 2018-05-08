@@ -75,9 +75,25 @@ float p2Body::GetGravityScale()
 	}
 }
 
+void p2Body::SetMass(float Mass)
+{
+	mass = Mass;
+}
+
+float p2Body::GetMass()
+{
+	return mass;
+}
+
+
 p2BodyType p2Body::GetType()
 {
 	return this->type;
+}
+
+p2Collider * p2Body::GetCollider()
+{
+	return &(*collider);
 }
 
 p2Collider * p2Body::CreateCollider(p2ColliderDef * colliderDef)
@@ -93,6 +109,7 @@ p2Collider * p2Body::CreateCollider(p2ColliderDef * colliderDef)
 	{
 		this->aabb = p2AABB(GetPosition(), d->GetSize());
 	}
+
 	this->collider = new p2Collider(colliderDef);
 	return (this->collider);
 }

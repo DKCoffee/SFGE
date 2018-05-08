@@ -27,6 +27,7 @@ SOFTWARE.
 void p2CircleShape::SetRadius(float radius)
 {
 	this->m_Radius = radius;
+	Radius = radius;
 }
 
 float p2CircleShape::GetRadius()
@@ -47,4 +48,9 @@ p2Vec2 p2RectShape::GetSize()
 void p2Shape::f()
 {
 
+}
+
+float p2Shape::GetRadius()
+{
+	return Radius;
 }

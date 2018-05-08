@@ -72,7 +72,13 @@ public:
 
 	float GetGravityScale();
 
+	void SetMass(float Mass);
+	
+	float GetMass();
+
 	p2BodyType GetType();
+
+	p2Collider* GetCollider();
 
 	/**
 	* \brief Factory method creating a p2Collider
@@ -93,5 +99,6 @@ private:
 	p2BodyType type;
 	p2Collider* collider;
 	float gravityScale;
+	float mass = 0;
 };
 #endif
